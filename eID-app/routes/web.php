@@ -12,7 +12,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', function () {
+    return view('auth.login');
+})->middleware('guest');
+
+Route::get('/homepage', function () {
     return view('homepage');
 });
 /*
@@ -26,4 +31,8 @@ Route::post('/login', function () {
 
 Route::get('/login', function () {
     return view('login');
-});*/
+});
+*/
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
